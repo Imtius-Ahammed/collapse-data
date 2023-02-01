@@ -1,5 +1,5 @@
 import React, { useContext, } from 'react';
-import { AccordionContext } from 'react-bootstrap';
+import { AccordionContext, Button } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import Card from 'react-bootstrap/Card';
@@ -17,36 +17,79 @@ function ContextAwareToggle({ children, eventKey, callback }) {
     const isCurrentEventKey = activeEventKey === eventKey;
   
     return (
-      <button
-        type="button"
-        style={{ backgroundColor: isCurrentEventKey ? 'pink' : 'lavender' }}
+      <Button
+        
+        className='m-5 border-0'
+        style={{ backgroundColor: isCurrentEventKey ? 'pink' : 'red' }}
         onClick={decoratedOnClick}
       >
         {children}
-      </button>
+      </Button>
     );
   }
 
 
 const Home = () => {
  const allData = useLoaderData('')
- console.log()
+
+
       
    
         return (
-        <div>
+        <div className='container bg-info pt-5'>
+          <div className='container'>
             {
-                allData.map(data=> <Accordion key={data.id} defaultActiveKey="0">
-                <Card>
-                  <Card.Header  className="d-flex justify-content-end">
+                allData.map(data=> <Accordion key={data.id} >
+                <Card className='mb-3 '>
+                  <Card.Header  className="d-flex border-0 justify-content-between align-items-center">
                   <div>
                         <h6>{data.name}</h6>
                     
                     </div>
-                    <ContextAwareToggle eventKey="0">
-                        <h1>Click me!</h1>
+                  <div className='d-flex flex-column'>
+                       <div>
+                        <h3>Contact</h3>
+
+                       </div>
+                       <div>
+                        {data.phone}
+
+                       </div>
+                    
+                    </div>
+                  <div className='d-flex flex-column'>
+                       <div>
+                        <h3>City</h3>
+
+                       </div>
+                       <div>
+                        {data.address.city}
+
+                       </div>
+                    
+                    </div>
+                  <div className='d-flex flex-column'>
+                       <div>
+                        <h3>Street</h3>
+
+                       </div>
+                       <div>
+                        {data.address.street}
+
+                       </div>
+                    
+                    </div>
+                
+                  <div>
+                        <h6>{data.name}</h6>
+                    
+                    </div>
+                <div>
+                <ContextAwareToggle  eventKey="0">
+                        <h1 >Click me!</h1>
                     
                     </ContextAwareToggle>
+                </div>
                    
                  
                   </Card.Header>
@@ -57,6 +100,7 @@ const Home = () => {
                
               </Accordion>)
             }
+        </div>
         </div>
         );
       
