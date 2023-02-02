@@ -1,4 +1,4 @@
-import React, { useContext, } from 'react';
+import React, { useContext, useEffect, useState, } from 'react';
 import { AccordionContext, Button, Col, Container, Row } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
@@ -30,7 +30,14 @@ function ContextAwareToggle({ children, eventKey, callback }) {
 
 
 const Home = () => {
- const allData = useLoaderData('')
+
+
+ const [allData, setAllData]=useState([]);
+ useEffect(()=>{
+  fetch('https://jsonplaceholder.typicode.com/users')
+  .then(res=>res.json())
+  .then(data=>setAllData(data))
+ },[])
 
 
       
